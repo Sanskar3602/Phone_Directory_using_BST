@@ -1,9 +1,6 @@
-
-#include<iostream>
+#include<bits/stdc++.h>
 #include<fstream>
-#include<string.h>
 #include<sstream>
-#include<string>
 #include <cstdlib>
 
 using namespace std;
@@ -233,7 +230,7 @@ public:
 
 	void writeExisting(){
 		string num, line, fname, lname, email;
-		myFileStream.open("Data.txt");
+		myFileStream.open("Contacts.txt");
 		if (!myFileStream.is_open()){
 			cout << "File failed to open" << endl;
 		}
@@ -270,8 +267,9 @@ int main()
 	q.writeExisting();
 	cout << "\nCreation Successful\n";
 	do{
-		cout << "Enter the choice :\n1.Insert\n2.Delete\n3.Edit\n4.Search\n5.Print Phone book ?\n";
+		cout << "Enter one of the following choice :\n1.Insert\n2.Delete\n3.Edit\n4.Search\n5.Print Phone book\n6.Exit ?\n\n";
 		cin >> x;
+		bool exiting = false;
 		switch (x)
 		{
 		case 1:q.create(); cout << "\nContact Insertion successful"; break;
@@ -292,16 +290,20 @@ int main()
 			cin >> a;
 			q.searc(q.root, a); break;
 		case 5:q.inorder(); break;
+		case 6:exiting = true; break;
 		default:cout << "\nOption Invalid"; break;
 		}
-		outf.open("Contacts.txt", ios::trunc);
+		if(exiting){
+		    break;
+		}
+		outf.open("Data.txt", ios::trunc);
 		q.filee(q.root);
 		outf.close();
-		cout << endl << "Continue?\n";
+		cout << "\nContinue?\n";
 		cin >> c;
 	} while (c == "yes");
 
-	cout << "\n\nTHANK YOU";
+	cout << "\n\nTHANK YOU\nYou have Exited Successfully!\n";
 	//outf.close();
 	return 0;
 }
